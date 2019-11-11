@@ -3,7 +3,7 @@ const assert = require('assert')
 const markdown = require('markdown-it')({
   html: true,
   linkify: true,
-  typographer: true,
+  typographer: true
 }).use(require('markdown-it-footnote'))
 const { render } = require('..')
 
@@ -22,24 +22,23 @@ describe('parse', function () {
     html = markdown.render(md)
   })
 
-  it ('shall parse to confluence html content', function () {
+  it('shall parse to confluence html content', async function () {
     const filename = `${__dirname}/fixtures/test.confuence.html`
     const exp = fs.readFileSync(filename, 'utf8')
-    
-    const result = render(html) 
+
+    const result = await render(html)
     writeFixture(filename, result)
 
     assert.strictEqual(result, exp)
   })
 
-  it('shall parse to html content', function () {
+  it('shall parse to html content', async function () {
     const filename = `${__dirname}/fixtures/test.html`
     const exp = fs.readFileSync(filename, 'utf8')
 
-    const result = render(html, {isHtml: true})
+    const result = await render(html, { isHtml: true })
     writeFixture(filename, result)
 
     assert.strictEqual(result, exp)
   })
-
 })

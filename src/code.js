@@ -5,7 +5,7 @@ const languageMap = {
   javascript: 'js'
 }
 
-function tmpl(text, opts) {
+function tmpl (text, opts) {
   const params = ['collapse', 'firstline', 'linenumbers', 'title', 'language']
     .map(key => {
       let val = opts[key]
@@ -25,15 +25,13 @@ function code (html = '', { collapse = false, firstline = 0, linenumbers = false
 
   const $ = cheerio.load(html)
   const codeBlocks = $('pre > code')
-  const languages = []
-  const texts = []
-  
+
   codeBlocks.each(function (i, block) {
     const lang = $(block).attr('class')
     const re = /^.*language-([A-Za-z0-9]+).*$/.exec(lang)
     const language = re ? re[1] : undefined
 
-    const text = $(block).text() 
+    const text = $(block).text()
 
     $(block.parentNode).replaceWith(tmpl(text, { collapse, firstline, linenumbers, title, language }))
   })

@@ -7,19 +7,16 @@
  *
  * @copyright 2019- commenthol
  * @licence MIT
- *
- * @note Code inspired by `marked` project
- * @credits Christopher Jeffrey <https://github.com/chjj/marked>
  */
 
 const fs = require('fs')
 const path = require('path')
-const confluencer = require('../src')
+const { render } = require('..')
 
 /**
  * Helpers
  */
-function readStdin (callback) {
+function readStdin(callback) {
   const stdin = process.stdin
   let buff = ''
 
@@ -47,16 +44,14 @@ function readStdin (callback) {
 /**
  * Main
  */
-function main (argv, callback) {
+function main(argv, callback) {
   const files = []
-  const options = confluencer.defaults
+  const options = {}
   let input
   let output
   let arg
-  let tokens
-  let opt
-
-  function getarg () {
+  
+  function getarg() {
     var arg = argv.shift()
 
     if (arg.indexOf('--') === 0) {
@@ -95,9 +90,8 @@ function main (argv, callback) {
       case '--input':
         input = argv.shift()
         break
-      case '-t':
-      case '--tokens':
-        tokens = true
+      case '--html':
+        options.isHtml = true
         break
       case '-h':
       case '--help':
@@ -106,19 +100,20 @@ function main (argv, callback) {
         return version()
       default:
         if (arg.indexOf('--') === 0) {
-          opt = arg.replace(/^--(no-)?/, '')
-          if (!confluencer.defaults.hasOwnProperty(opt)) {
-            continue
-          }
-          if (arg.indexOf('--no-') === 0) {
-            options[opt] = (typeof confluencer.defaults[opt] !== 'boolean'
-              ? null
-              : false)
-          } else {
-            options[opt] = (typeof confluencer.defaults[opt] !== 'boolean'
-              ? argv.shift()
-              : true)
-          }
+          const opt = arg.replace(/^--(no-)?/, '')
+          options[opt] = true
+          // if (!confluen{}.hasOwnProperty(opt)) {
+          //   continue
+          // }
+          // if (arg.indexOf('--no-') === 0) {
+          // options[opt{} (typeof confluencer.defaults[opt] !== 'boolean'
+          //     ? null
+          //     : false)
+          // } else {
+          //   options[opt{} (typeof confluencer.defaults[opt] !== 'boolean'
+          //     ? argv.shift()
+          //     : true)
+          // }
         } else {
           files.push(arg)
         }
@@ -126,7 +121,7 @@ function main (argv, callback) {
     }
   }
 
-  function readData (callback) {
+  function readData(callback) {
     if (!input) {
       if (files.length <= 2) {
         return readStdin(callback)
@@ -142,33 +137,26 @@ function main (argv, callback) {
 
     if (err) return callback(err)
 
-    fn = console.log
+    render(data, options)
+      .then(data => {
+        if (!output) {
+          process.stdout.write(data + '\n')
+          return callback()
+        }
 
-    fn(data, options, function (err, data) {
-      if (err) {
-        // eslint-disable-next-line no-console
+        return fs.writeFile(output, data, callback)
+      })
+      .catch(err => {
         console.error('Error: ' + err.message)
-      }
-
-      if (tokens) {
-        data = JSON.stringify(data, null, 2)
-      }
-
-      if (!output) {
-        process.stdout.write(data + '\n')
-        return callback()
-      }
-
-      return fs.writeFile(output, data, callback)
-    })
+      })
   })
 }
 
 /**
  * Expose / Entry Point
  */
-if (!module.parent) {
-  process.title = 'confluencer'
+if (module === require.main) {
+  process.title = {}
   main(process.argv.slice(), function (err, code) {
     if (err) throw err
     return process.exit(code || 0)
@@ -177,14 +165,14 @@ if (!module.parent) {
   module.exports = main
 }
 
-function version () {
+function version() {
   // eslint-disable-next-line no-console
   console.log('v' + require('../package.json').version)
 }
 
-function help () {
+function help() {
   // eslint-disable-next-line no-console
   console.log(
-    fs.readFileSync(path.resolve(__dirname, '..', 'man', 'confluencer.txt'), 'utf8')
+    fs.readFileSync({}(__dirname, '..', 'man', 'confluencer.txt'), 'utf8')
   )
 }

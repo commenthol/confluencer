@@ -6,18 +6,18 @@ const cnflStart = (macro, title = '') => {
   return `<table class="wysiwyg-macro" data-macro-name="${macro}" data-macro-parameters="title=${title}" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">`
 }
 const cnflEnd = () => {
-  return `</td></tr></tbody></table>`
+  return '</td></tr></tbody></table>'
 }
 const htmlStart = (macro, title = '') => `<cnfl-note macro="${macro}" title="${title}">`
-const htmlEnd = (macro) => `</cnfl-note>`
+const htmlEnd = (macro) => '</cnfl-note>'
 
 function note (text = '', { isHtml = false } = {}) {
-  let block = undefined
+  let block
   return text.split(/[\r\n]/).map(line => {
     const re = (!block ? RE_START : RE_END).exec(line)
     if (re) {
       // console.log(re)
-      const [_, macro, title] = re
+      const [_, macro, title] = re // eslint-disable-line no-unused-vars
       let ret
       if (isHtml) {
         ret = !block
@@ -34,7 +34,6 @@ function note (text = '', { isHtml = false } = {}) {
       return line
     }
   }).join('\n')
-
 }
 
 module.exports = { note }

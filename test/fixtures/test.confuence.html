@@ -1,0 +1,195 @@
+<html><head><style>
+img.emoticon {
+  vertical-align: text-bottom;
+  width: 16px;
+  height: 16px
+}
+
+.wysiwyg-macro {
+  background-color: #f0f0f0;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  border: 1px solid #ddd
+}
+
+.wysiwyg-macro {
+  padding: 24px 2px 2px 2px;
+  width: 100%
+}
+
+.wysiwyg-macro-body {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 0;
+  padding: 10px
+}
+
+.wysiwyg-macro-body>p:first-child {
+  margin-top: 0
+}
+
+.wysiwyg-macro-body>p:last-child {
+  margin-bottom: 0
+}
+
+.wysiwyg-macro-body>pre {
+  -moz-tab-size: 4;
+  -ms-tab-size: 4;
+  -webkit-tab-size: 4;
+  tab-size: 4;
+  margin: 0;
+  white-space: pre-wrap
+}
+
+td .wysiwyg-macro-body {
+  min-width: 200px
+}
+
+.confluence-embedded-image {
+  cursor: default;
+  max-width: calc(100% - 4px);
+  margin-left: 2px;
+  margin-right: 2px;
+  vertical-align: text-bottom
+}
+
+.confluence-embedded-image[width],
+.confluence-embedded-image[height] {
+  max-width: none
+}
+
+table.wysiwyg-macro {
+  border-collapse: separate
+}
+
+.wysiwyg-unknown-macro {
+  vertical-align: text-bottom
+}
+
+p+table.wysiwyg-macro,
+table.wysiwyg-macro+p {
+  margin-top: 10px
+}
+
+.editor-inline-macro {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  margin: 0 2px;
+  min-height: 24px;
+  vertical-align: text-bottom
+}
+
+.confluenceTh>.editor-inline-macro,
+.confluenceTh>.wysiwyg-unknown-macro,
+.confluenceTd>.editor-inline-macro,
+.confluenceTd>.wysiwyg-unknown-macro {
+  vertical-align: inherit
+}
+
+table.confluenceTable {
+  margin-bottom: 0
+}
+
+img.confluence-embedded-image,
+img.editor-inline-macro,
+table.wysiwyg-macro {
+  cursor: move
+}
+</style>
+<base href="https://my.confluence.com/path/to/page">
+</head><body><h2>footnotes</h2>
+<p>This is a <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<p>To correctly render a footnote on a defined page you&#x2019;ll need to add</p>
+<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=html" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>&lt;base href=&quot;https://my.confluence.com/path/to/page&quot;&gt;
+</pre></td></tr></tbody></table>
+<h2>{status}</h2>
+<p>This shall render a <img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;title=STATUS" data-macro-name="status" data-macro-parameters="title=STATUS" data-macro-default-parameter data-macro-schema-version="1" height="18"> macro.</p>
+<p>In <img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;colour=Red&amp;title=RED" data-macro-name="status" data-macro-parameters="colour=Red|title=RED" data-macro-default-parameter data-macro-schema-version="1" height="18"> <img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;colour=Yellow&amp;title=YELLOW" data-macro-name="status" data-macro-parameters="colour=Yellow|title=YELLOW" data-macro-default-parameter data-macro-schema-version="1" height="18"> <img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;colour=Blue&amp;title=Blue" data-macro-name="status" data-macro-parameters="colour=Blue|title=Blue" data-macro-default-parameter data-macro-schema-version="1" height="18"> <img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;colour=Green&amp;title=GREEN" data-macro-name="status" data-macro-parameters="colour=Green|title=GREEN" data-macro-default-parameter data-macro-schema-version="1" height="18">&#x2026;</p>
+<h2>{note}</h2>
+<blockquote>
+<p>Note the TWO backticks ``</p>
+</blockquote>
+<table class="wysiwyg-macro" data-macro-name="note" data-macro-parameters="title=This is the note title" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">
+<ul>
+<li>Note 1</li>
+<li>And here is some text</li>
+</ul>
+</td></tr></tbody></table>
+<h2>{info}</h2>
+<blockquote>
+<p>Note the TWO backticks ``</p>
+</blockquote>
+<p>No Title</p>
+<table class="wysiwyg-macro" data-macro-name="info" data-macro-parameters="title=" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">
+<ul>
+<li>Info</li>
+<li>And here is some text</li>
+</ul>
+</td></tr></tbody></table>
+<p>With Title</p>
+<table class="wysiwyg-macro" data-macro-name="info" data-macro-parameters="title=This is the info title" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">
+<ul>
+<li>Info</li>
+<li>And here is some text</li>
+</ul>
+</td></tr></tbody></table>
+<h2>{warning}</h2>
+<blockquote>
+<p>Note the TWO backticks ``</p>
+</blockquote>
+<p>No title</p>
+<table class="wysiwyg-macro" data-macro-name="warning" data-macro-parameters="title=This is the warning title" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">
+<ul>
+<li>Warning</li>
+<li>And here is some text</li>
+</ul>
+</td></tr></tbody></table>
+<p>With title</p>
+<table class="wysiwyg-macro" data-macro-name="warning" data-macro-parameters="title=This is the warning title" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">
+<ul>
+<li>Warning</li>
+<li>And here is some text</li>
+</ul>
+</td></tr></tbody></table>
+<h2>{code}</h2>
+<blockquote>
+<p>Note the THREE backticks ``</p>
+</blockquote>
+<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=js" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>// Write your code as usual...
+(function () {
+  console.log(&apos;This gets converted...&apos;)
+})()
+</pre></td></tr></tbody></table>
+<p>Just text</p>
+<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>This is just a text clock
+
+- one
+- two
+- three
+</pre></td></tr></tbody></table>
+<h2>{plantuml}</h2>
+<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>@startuml
+
+&apos; Write your plantumlcode as usual...
+
+actor Foo1 
+boundary Foo2 
+control Foo3 
+entity Foo4 
+database Foo5
+
+Foo1 --&gt; Foo2 : To boundary
+Foo1 --&gt; Foo3 : To control
+Foo1 --&gt; Foo4 : To entity
+Foo1 --&gt; Foo5 : To database
+
+@enduml
+</pre></td></tr></tbody></table>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>the footnote text <a href="#fnref1" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+</ol>
+</section>
+</body></html>

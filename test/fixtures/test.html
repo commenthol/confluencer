@@ -1,0 +1,144 @@
+
+<style>
+:root {
+  --radius: 0.25em;
+}
+
+cnfl-status {
+  background: #999999;
+  color: white;
+  padding: var(--radius);
+  border-radius: var(--radius);
+  font-weight: bold;
+}
+cnfl-status[color=Red] { background: #ff0000; }
+cnfl-status[color=Yellow] { background: #ffcc00; color: black; }
+cnfl-status[color=Green] { background: #33ff33; color: black;}
+cnfl-status[color=Blue] { background: #00ccff }
+
+cnfl-note {
+  display: block;
+  background: #fcfcfc;
+  border: 1px solid#ccc;
+  border-radius: 5px;
+  color:#333;
+  margin: 10px 0 1em 0;
+  min-height: 20px;
+  padding: 10px;
+  position: relative;
+}
+cnfl-note[macro=note] {
+  background: #fffdf6;
+  border-color: #ffeaae;  
+}
+cnfl-note[macro=note]:before { font-weight: bold; content: "\26a0"; }
+cnfl-note[macro=note][title]:before { font-weight: bold; content: "\26a0" " " attr(title); }
+
+cnfl-note[macro=warning] {
+background:#fff8f7;
+border-color:#d04437;
+}
+cnfl-note[macro=warning]:before { font-weight: bold; content: "\26d4"; }
+cnfl-note[macro=warning][title]:before { font-weight: bold; content: "\26d4" " " attr(title); }
+
+cnfl-note[macro=info] {}
+cnfl-note[macro=info]:before { font-weight: bold; content: "\1F6C8"; }
+cnfl-note[macro=info][title]:before { font-weight: bold; content: "\1F6C8" " " attr(title); }
+
+</style>
+<base href="https://my.confluence.com/path/to/page">
+<h2>footnotes</h2>
+<p>This is a <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<p>To correctly render a footnote on a defined page you’ll need to add</p>
+<pre><code class="language-html">&lt;base href=&quot;https://my.confluence.com/path/to/page&quot;&gt;
+</code></pre>
+<h2>{status}</h2>
+<p>This shall render a <cnfl-status color="">STATUS</cnfl-status> macro.</p>
+<p>In <cnfl-status color="Red">RED</cnfl-status> <cnfl-status color="Yellow">YELLOW</cnfl-status> <cnfl-status color="Blue">Blue</cnfl-status> <cnfl-status color="Green">GREEN</cnfl-status>…</p>
+<h2>{note}</h2>
+<blockquote>
+<p>Note the TWO backticks ``</p>
+</blockquote>
+<cnfl-note macro="note" title="This is the note title">
+<ul>
+<li>Note 1</li>
+<li>And here is some text</li>
+</ul>
+</cnfl-note>
+<h2>{info}</h2>
+<blockquote>
+<p>Note the TWO backticks ``</p>
+</blockquote>
+<p>No Title</p>
+<cnfl-note macro="info" title="">
+<ul>
+<li>Info</li>
+<li>And here is some text</li>
+</ul>
+</cnfl-note>
+<p>With Title</p>
+<cnfl-note macro="info" title="This is the info title">
+<ul>
+<li>Info</li>
+<li>And here is some text</li>
+</ul>
+</cnfl-note>
+<h2>{warning}</h2>
+<blockquote>
+<p>Note the TWO backticks ``</p>
+</blockquote>
+<p>No title</p>
+<cnfl-note macro="warning" title="This is the warning title">
+<ul>
+<li>Warning</li>
+<li>And here is some text</li>
+</ul>
+</cnfl-note>
+<p>With title</p>
+<cnfl-note macro="warning" title="This is the warning title">
+<ul>
+<li>Warning</li>
+<li>And here is some text</li>
+</ul>
+</cnfl-note>
+<h2>{code}</h2>
+<blockquote>
+<p>Note the THREE backticks ``</p>
+</blockquote>
+<pre><code class="language-js">// Write your code as usual...
+(function () {
+  console.log('This gets converted...')
+})()
+</code></pre>
+<p>Just text</p>
+<pre><code>This is just a text clock
+
+- one
+- two
+- three
+</code></pre>
+<h2>{plantuml}</h2>
+<pre><code class="language-!plantuml()">@startuml
+
+' Write your plantumlcode as usual...
+
+actor Foo1 
+boundary Foo2 
+control Foo3 
+entity Foo4 
+database Foo5
+
+Foo1 --&gt; Foo2 : To boundary
+Foo1 --&gt; Foo3 : To control
+Foo1 --&gt; Foo4 : To entity
+Foo1 --&gt; Foo5 : To database
+
+@enduml
+</code></pre>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>the footnote text <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>

@@ -1,0 +1,20 @@
+{
+  "name": "confluencer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.22.0"
+  },
+  "devDependencies": {
+    "markdown-it": "^10.0.0",
+    "markdown-it-footnote": "^3.0.2",
+    "mocha": "^6.2.2"
+  }
+}

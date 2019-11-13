@@ -2,8 +2,8 @@ const assert = require('assert')
 const { code } = require('..')
 
 describe('code', function () {
-  it('shall convert highlighted code blocks', function () {
-    const exp = '<html><head></head><body><h2 id="%7Bcode%7D">{code}</h2>\n<blockquote>\n<p>Note the THREE backticks ``</p>\n</blockquote>\n<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=js" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>// Write your code as usual...\n(function () {\n  console.log(&apos;This gets converted...&apos;)\n})()\n</pre></td></tr></tbody></table></body></html>'
+  it('shall convert highlighted code blocks', async function () {
+    const exp = '<h2 id="%7Bcode%7D">{code}</h2>\n<blockquote>\n<p>Note the THREE backticks ``</p>\n</blockquote>\n<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=js" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>// Write your code as usual...\n(function () {\n  console.log(&apos;This gets converted...&apos;)\n})()\n</pre></td></tr></tbody></table>'
     const html = [
       '<h2 id="%7Bcode%7D">{code}</h2>',
       '<blockquote>',
@@ -15,13 +15,13 @@ describe('code', function () {
       '})()',
       '</code></pre>'
     ].join('\n')
-    const result = code(html)
+    const result = await code(html)
     // console.log(JSON.stringify(result))
     assert.strictEqual(result, exp)
   })
 
-  it('shall convert code blocks', function () {
-    const exp = '<html><head></head><body><p>Just text</p>\n<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>This is just a text clock\n\n- one\n- two\n- three\n</pre></td></tr></tbody></table><p>A paragraph...</p>\n<h2 id="%7Bcode%7D">{code}</h2>\n<blockquote>\n<p>Note the THREE backticks ``</p>\n</blockquote>\n<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=js" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>// Write your code as usual...\n(function () {\n  console.log(&apos;This gets converted...&apos;)\n})()\n</pre></td></tr></tbody></table></body></html>'
+  it('shall convert code blocks', async function () {
+    const exp = '<p>Just text</p>\n<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>This is just a text clock\n\n- one\n- two\n- three\n</pre></td></tr></tbody></table><p>A paragraph...</p>\n<h2 id="%7Bcode%7D">{code}</h2>\n<blockquote>\n<p>Note the THREE backticks ``</p>\n</blockquote>\n<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=js" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>// Write your code as usual...\n(function () {\n  console.log(&apos;This gets converted...&apos;)\n})()\n</pre></td></tr></tbody></table>'
 
     const html = [
       '<p>Just text</p>',
@@ -41,7 +41,7 @@ describe('code', function () {
       '})()',
       '</code></pre>'
     ].join('\n')
-    const result = code(html)
+    const result = await code(html)
     // console.log(JSON.stringify(result))
     assert.strictEqual(result, exp)
   })

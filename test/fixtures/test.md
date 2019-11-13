@@ -1,10 +1,10 @@
 <base href="https://my.confluence.com/path/to/page">
 
-## footnotes 
+## footnotes
 
 This is a [^footnote].
 
-To correctly render a footnote on a defined page you'll need to add 
+To correctly render a footnote on a defined page you'll need to add
 
 ```html
 <base href="https://my.confluence.com/path/to/page">
@@ -94,15 +94,15 @@ This is just a text clock
 
 ## {plantuml}
 
-```!plantuml()
+```!plantuml(format=svg)
 @startuml
 
-' Write your plantumlcode as usual...
+' Write your plantuml code as usual...
 
-actor Foo1 
-boundary Foo2 
-control Foo3 
-entity Foo4 
+actor Foo1
+boundary Foo2
+control Foo3
+entity Foo4
 database Foo5
 
 Foo1 --> Foo2 : To boundary
@@ -112,5 +112,15 @@ Foo1 --> Foo5 : To database
 
 @enduml
 ```
+
+```!plantuml(format=png)
+@startuml
+
+Alice --> Bob : Hello Bob
+Alice <.. Bob : Hi Alice
+
+@enduml
+```
+
 
 [^footnote]: the footnote text

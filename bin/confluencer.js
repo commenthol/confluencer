@@ -16,7 +16,7 @@ const { render } = require('..')
 /**
  * Helpers
  */
-function readStdin(callback) {
+function readStdin (callback) {
   const stdin = process.stdin
   let buff = ''
 
@@ -44,14 +44,14 @@ function readStdin(callback) {
 /**
  * Main
  */
-function main(argv, callback) {
+function main (argv, callback) {
   const files = []
   const options = {}
   let input
   let output
   let arg
-  
-  function getarg() {
+
+  function getarg () {
     var arg = argv.shift()
 
     if (arg.indexOf('--') === 0) {
@@ -121,7 +121,7 @@ function main(argv, callback) {
     }
   }
 
-  function readData(callback) {
+  function readData (callback) {
     if (!input) {
       if (files.length <= 2) {
         return readStdin(callback)
@@ -133,10 +133,9 @@ function main(argv, callback) {
   }
 
   return readData(function (err, data) {
-    let fn
-
     if (err) return callback(err)
-
+    // console.log('XXXXXX', data)
+    // console.log('XXXXXX', options)
     render(data, options)
       .then(data => {
         if (!output) {
@@ -165,12 +164,12 @@ if (module === require.main) {
   module.exports = main
 }
 
-function version() {
+function version () {
   // eslint-disable-next-line no-console
   console.log('v' + require('../package.json').version)
 }
 
-function help() {
+function help () {
   // eslint-disable-next-line no-console
   console.log(
     fs.readFileSync({}(__dirname, '..', 'man', 'confluencer.txt'), 'utf8')

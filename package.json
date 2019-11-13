@@ -11,7 +11,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "posttest": "eslint --fix src test"
+    "posttest": "eslint --fix src test",
+    "postinstall": "node scripts/plantuml.js"
   },
   "dependencies": {
     "cheerio": "^0.22.0"

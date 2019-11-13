@@ -1,0 +1,8 @@
+@startuml
+
+actor Alice as alice
+
+alice --> bob : Hello Bob
+alice <-- bob : Hi Alice
+
+@enduml

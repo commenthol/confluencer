@@ -1,4 +1,5 @@
-<html><head><style>
+
+<style>
 img.emoticon {
   vertical-align: text-bottom;
   width: 16px;
@@ -97,7 +98,7 @@ table.wysiwyg-macro {
 }
 </style>
 <base href="https://my.confluence.com/path/to/page">
-</head><body><h2>footnotes</h2>
+<h2>footnotes</h2>
 <p>This is a <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
 <p>To correctly render a footnote on a defined page you&#x2019;ll need to add</p>
 <table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=html" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>&lt;base href=&quot;https://my.confluence.com/path/to/page&quot;&gt;
@@ -170,18 +171,25 @@ table.wysiwyg-macro {
 <h2>{plantuml}</h2>
 <table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>@startuml
 
-&apos; Write your plantumlcode as usual...
+&apos; Write your plantuml code as usual...
 
-actor Foo1 
-boundary Foo2 
-control Foo3 
-entity Foo4 
+actor Foo1
+boundary Foo2
+control Foo3
+entity Foo4
 database Foo5
 
 Foo1 --&gt; Foo2 : To boundary
 Foo1 --&gt; Foo3 : To control
 Foo1 --&gt; Foo4 : To entity
 Foo1 --&gt; Foo5 : To database
+
+@enduml
+</pre></td></tr></tbody></table>
+<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>@startuml
+
+Alice --&gt; Bob : Hello Bob
+Alice &lt;.. Bob : Hi Alice
 
 @enduml
 </pre></td></tr></tbody></table>
@@ -192,4 +200,3 @@ Foo1 --&gt; Foo5 : To database
 </li>
 </ol>
 </section>
-</body></html>

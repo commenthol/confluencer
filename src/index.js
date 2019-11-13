@@ -6,8 +6,8 @@ const { code } = require('./code.js')
 async function render (text, { isHtml = false } = {}) {
   let _text = style(isHtml) + status(text, { isHtml })
   _text = note(_text, { isHtml })
-  _text = code(_text, { isHtml })
-  return Promise.resolve(_text)
+  _text = await code(_text, { isHtml })
+  return _text
 }
 
 module.exports = {

@@ -1,4 +1,6 @@
 node_modules
+test
+clip.html
 *.tgz
 *.log
 .*

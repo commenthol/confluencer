@@ -1,5 +1,17 @@
+const params = require('./params.js')
 
-const RE = /!status\((?:color=(Red|Yellow|Green|Blue) )?([^)]*)\)/g
+const RE = /!status\(([^)]+)\)/g
+const COLORS = /^(Red|Yellow|Green|Blue)$/i
+
+const capitalize = ([first, ...rest], lowerRest = false) =>
+  first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''))
+
+const toColor = (color) => {
+  if (COLORS.test(color)) {
+    return capitalize(color)
+  }
+  return ''
+}
 
 const cnfl = ({ title, color }) => {
   let colorQuery = ''
@@ -17,7 +29,10 @@ const html = ({ title, color = '' }) => {
 }
 
 function status (text = '', { isHtml = false } = {}) {
-  return text.replace(RE, (_, color, title) => {
+  return text.replace(RE, (_, p) => {
+    let { color, _: title } = params(p)
+    color = toColor(color)
+
     if (!title) return _
     if (isHtml) {
       return html({ title, color })

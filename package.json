@@ -10,9 +10,10 @@
     "confluencer": "./bin/confluencer.js"
   },
   "scripts": {
+    "postinstall": "node scripts/plantuml.js",
+    "lint": "eslint --fix \"**/*.js\"",
     "test": "mocha",
-    "posttest": "eslint --fix src test",
-    "postinstall": "node scripts/plantuml.js"
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "cheerio": "^0.22.0"

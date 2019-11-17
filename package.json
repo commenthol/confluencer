@@ -3,11 +3,22 @@
   "version": "1.0.0",
   "description": "convert markdown to copy & paste ready confuence rich text",
   "keywords": [],
+  "homepage": "https://github.com/commenthol/confluencer#readme",
+  "bugs": {
+    "url": "https://github.com/commenthol/confluencer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commenthol/confluencer.git"
+  },
   "license": "MIT",
   "author": "commenthol <commenthol@gmail.com>",
   "main": "./src",
   "bin": {
     "confluencer": "./bin/confluencer.js"
+  },
+  "directories": {
+    "test": "test"
   },
   "scripts": {
     "postinstall": "node scripts/plantuml.js",

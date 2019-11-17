@@ -17,7 +17,7 @@ describe('status', function () {
   })
 
   it('shall not render unknown color', function () {
-    const exp = 'This shall render a <img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;title=STA%22TUS" data-macro-name="status" data-macro-parameters="title=STA\\"TUS" data-macro-default-parameter="" data-macro-schema-version="1" height="18"></img> macro.'
+    const exp = 'This shall render a <img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;title=STA&quot;TUS" data-macro-name="status" data-macro-parameters="title=STA&quot;TUS" data-macro-default-parameter="" data-macro-schema-version="1" height="18"></img> macro.'
     const text = 'This shall render a !status(color=Purple STA"TUS) macro.'
     const result = status(text)
     assert.strictEqual(result, exp)

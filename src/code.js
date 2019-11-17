@@ -1,5 +1,5 @@
 const cheerio = require('cheerio')
-const { escapeHtml } = require('./escapeHtml.js')
+const { escapeHtmlLiteral } = require('./utils.js')
 const { plantuml } = require('./plantuml.js')
 
 const languageMap = {
@@ -13,12 +13,12 @@ function tmpl (text, opts) {
       if (key === 'language') {
         val = languageMap[val] || val
       }
-      return val ? escapeHtml`${key}=${val}` : undefined
+      return val ? `${key}=${val}` : undefined
     })
     .filter(Boolean)
     .join('|')
 
-  return `<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="${params}" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>${escapeHtml`${text}`}</pre></td></tr></tbody></table>`
+  return escapeHtmlLiteral`<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="${params}" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>${text}</pre></td></tr></tbody></table>`
 }
 
 async function code (html = '', { collapse = false, firstline = 0, linenumbers = false, title = '', isHtml = false } = {}) {

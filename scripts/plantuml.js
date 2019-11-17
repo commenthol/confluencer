@@ -37,7 +37,7 @@ const download = (url, filename) => {
           res.pipe(file)
           res.on('error', error)
         } else {
-          reject(new Error(res.statusCode))
+          reject(new Error(String(res.statusCode)))
         }
       })
       req.on('error', error)

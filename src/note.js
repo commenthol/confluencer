@@ -1,15 +1,20 @@
+const { escapeHtmlLiteral } = require('./utils.js')
 
 const RE_START = /^(?:<p>)?``!(note|info|warning)\(([^)]*)\)\s*(?:<\/p>)?\s*$/
 const RE_END = /^(?:<p>)?``\s*(?:<\/p>)\s*$/
 
 const cnflStart = (macro, title = '') => {
-  return `<table class="wysiwyg-macro" data-macro-name="${macro}" data-macro-parameters="title=${title}" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">`
+  return escapeHtmlLiteral`<table class="wysiwyg-macro" data-macro-name="${macro}" data-macro-parameters="${'title=' + title}" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">`
 }
+
 const cnflEnd = () => {
   return '</td></tr></tbody></table>'
 }
-const htmlStart = (macro, title = '') => `<cnfl-note macro="${macro}" title="${title}">`
-const htmlEnd = (macro) => '</cnfl-note>'
+
+const htmlStart = (macro, title = '') =>
+  escapeHtmlLiteral`<cnfl-note macro="${macro}" title="${title}">`
+
+const htmlEnd = () => '</cnfl-note>'
 
 function note (text = '', { isHtml = false } = {}) {
   let block
@@ -22,7 +27,7 @@ function note (text = '', { isHtml = false } = {}) {
       if (isHtml) {
         ret = !block
           ? htmlStart(macro, title)
-          : htmlEnd(macro)
+          : htmlEnd()
       } else {
         ret = !block
           ? cnflStart(macro, title)

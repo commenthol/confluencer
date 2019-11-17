@@ -12,6 +12,7 @@ async function exec (command, args, diagram) {
     sub.stderr.on('data', data => { stderr = Buffer.concat([stderr, data]) })
     sub.on('close', () => resolve(stdout))
     sub.on('error', err => {
+      // @ts-ignore
       err.stderr = stderr.toString()
       reject(err)
     })

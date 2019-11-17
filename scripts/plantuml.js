@@ -34,7 +34,6 @@ const download = (url, filename) => {
           return
         }
         if (code === '2') {
-          console.log(res.headers)
           res.pipe(file)
           res.on('error', error)
         } else {
@@ -52,7 +51,8 @@ const download = (url, filename) => {
 const url = 'https://downloads.sourceforge.net/project/plantuml/plantuml.jar'
 const filename = resolve(__dirname, '..', 'plantuml.jar')
 
-console.log(`
+if (!fs.existsSync(filename)) {
+  console.log(`
   confluencer postinstall script:
 
   downloading "plantuml.jar" from "${url}"
@@ -60,4 +60,5 @@ console.log(`
 
 `)
 
-download(url, filename)
+  download(url, filename)
+}

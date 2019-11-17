@@ -9,6 +9,8 @@ describe('params', function () {
       { _: 'title', format: 'svg' }],
     ['format=svg title',
       { _: 'title', format: 'svg' }],
+    ['format=svg tit"le',
+      { _: 'tit"le', format: 'svg' }],
     ['title subtitle=a subtitle with spaces',
       { _: 'title', subtitle: 'a subtitle with spaces' }],
     ['title subtitle=a subtitle with spaces other=1',

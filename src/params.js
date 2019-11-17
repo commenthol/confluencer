@@ -19,6 +19,7 @@ function params (str) {
     params[key] = (params[key] || '') + char
   }
 
+  let prev
   for (let i = 0; i < str.length; i++) {
     const char = str[i]
     const next = str[i + 1]
@@ -33,7 +34,7 @@ function params (str) {
       } else {
         add(char)
       }
-    } else if (QUOTES.includes(char)) {
+    } else if ([EQUALS, SPACE].includes(prev) && QUOTES.includes(char)) {
       flags.quote = char
     } else if (char === EQUALS) {
       if (cache && cache !== EQUALS && next !== EQUALS) {
@@ -55,6 +56,8 @@ function params (str) {
       cache = ''
       add(char)
     }
+
+    prev = char
   }
 
   add(cache)

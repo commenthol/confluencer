@@ -3,6 +3,11 @@ const params = require('./params.js')
 const RE = /!status\(([^)]+)\)/g
 const COLORS = /^(Red|Yellow|Green|Blue)$/i
 
+const quoted = str => {
+  str = JSON.stringify(str).substring(1)
+  return str.substring(0, str.length - 1)
+}
+
 const capitalize = ([first, ...rest], lowerRest = false) =>
   first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''))
 
@@ -21,7 +26,7 @@ const cnfl = ({ title, color }) => {
     colorParam = `colour=${color}|`
   }
 
-  return `<img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;${colorQuery}title=${title}" data-macro-name="status" data-macro-parameters="${colorParam}title=${title}" data-macro-default-parameter="" data-macro-schema-version="1" height="18"></img>`
+  return `<img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;${colorQuery}title=${escape(title)}" data-macro-name="status" data-macro-parameters="${colorParam}title=${quoted(title)}" data-macro-default-parameter="" data-macro-schema-version="1" height="18"></img>`
 }
 
 const html = ({ title, color = '' }) => {

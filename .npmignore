@@ -1,8 +1,11 @@
-node_modules
-test
+node_modules/
+assets/
+test/
+tmp/
+
+plantuml.jar
 clip.html
+
 *.tgz
 *.log
 .*
-plantuml.jar
-tmp

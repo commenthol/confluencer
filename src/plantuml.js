@@ -43,8 +43,6 @@ function tmplPlantuml (text, opts = {}) {
     .join('|')
 
   return escapeHtmlLiteral`<table class="wysiwyg-macro" data-macro-name="plantuml" data-macro-parameters="${params}" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>${text}</pre></td></tr></tbody></table>`
-    .replace(/&lt;([-.])/g, '<$1')
-    .replace(/([-.])&gt;/g, '$1>')
 }
 
 async function plantuml (diagram = '', { type = 'svg', jar = PLANTUML_JAR } = {}) {

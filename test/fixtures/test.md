@@ -3,11 +3,17 @@
 
 This is a [^footnote].
 
-To correctly render a footnote on a defined page you'll need to add
+## {anchor}
+
+Write your [cross-references](#cross-ref) as with markdown...
 
 ```html
-<base href="https://my.confluence.com/path/to/page">
+[Goto anchor](#anchor)
+...
+<a name="anchor"></a>
 ```
+
+<a name="cross-ref"></a>
 
 ## {status}
 
@@ -72,7 +78,7 @@ With title
 
 ## {code}
 
-> Note the THREE backticks ``
+> Note the THREE backticks ```
 
 ```js
 // Write your code as usual...

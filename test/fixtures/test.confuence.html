@@ -117,9 +117,13 @@ table.wysiwyg-macro {
 <h2>footnotes</h2>
 <p>This is a <sup class="footnote-ref"><img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="anchor" data-macro-default-parameter="fnref1" data-macro-schema-version="1" width="9" height="18">
 <a href="#fn1" id="fnref1" class="confluence-link" data-anchor="fn1" data-linked-resource-default-alias="fn1">[1]</a></sup>.</p>
-<p>To correctly render a footnote on a defined page you&#x2019;ll need to add</p>
-<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=html" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>&lt;base href=&quot;https://my.confluence.com/path/to/page&quot;&gt;
+<h2>{anchor}</h2>
+<p>Write your <a href="#cross-ref" class="confluence-link" data-anchor="cross-ref" data-linked-resource-default-alias="cross-ref">cross-references</a> as with markdown&#x2026;</p>
+<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=html" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>[Goto anchor](#anchor)
+...
+&lt;a name=&quot;anchor&quot;&gt;&lt;/a&gt;
 </pre></td></tr></tbody></table>
+<p><img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="anchor" data-macro-default-parameter="cross-ref" data-macro-schema-version="1" width="9" height="18"></p>
 <h2>{status}</h2>
 <p>This shall render a <img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="status" data-macro-parameters="title=STATUS" data-macro-default-parameter data-macro-schema-version="1" width="36" height="18"> macro.</p>
 <p>In <img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="status" data-macro-parameters="colour=Red|title=RED" data-macro-default-parameter data-macro-schema-version="1" width="36" height="18"> <img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="status" data-macro-parameters="colour=Yellow|title=YELLOW" data-macro-default-parameter data-macro-schema-version="1" width="36" height="18"> <img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="status" data-macro-parameters="colour=Blue|title=Blue" data-macro-default-parameter data-macro-schema-version="1" width="36" height="18"> <img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="status" data-macro-parameters="colour=Green|title=GREEN" data-macro-default-parameter data-macro-schema-version="1" width="36" height="18">&#x2026;</p>
@@ -171,7 +175,7 @@ table.wysiwyg-macro {
 </td></tr></tbody></table>
 <h2>{code}</h2>
 <blockquote>
-<p>Note the THREE backticks ``</p>
+<p>Note the THREE backticks ```</p>
 </blockquote>
 <table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="language=js" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>// Write your code as usual...
 (function () {

@@ -48,9 +48,13 @@ cnfl-note[macro=info][title]:before { font-weight: bold; content: "\1F6C8" " " a
 </style>
 <h2>footnotes</h2>
 <p>This is a <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
-<p>To correctly render a footnote on a defined page you&#x2019;ll need to add</p>
-<pre><code class="language-html">&lt;base href=&quot;https://my.confluence.com/path/to/page&quot;&gt;
+<h2>{anchor}</h2>
+<p>Write your <a href="#cross-ref">cross-references</a> as with markdown&#x2026;</p>
+<pre><code class="language-html">[Goto anchor](#anchor)
+...
+&lt;a name=&quot;anchor&quot;&gt;&lt;/a&gt;
 </code></pre>
+<p><a name="cross-ref"></a></p>
 <h2>{status}</h2>
 <p>This shall render a <cnfl-status color>STATUS</cnfl-status> macro.</p>
 <p>In <cnfl-status color="Red">RED</cnfl-status> <cnfl-status color="Yellow">YELLOW</cnfl-status> <cnfl-status color="Blue">Blue</cnfl-status> <cnfl-status color="Green">GREEN</cnfl-status>&#x2026;</p>
@@ -102,7 +106,7 @@ cnfl-note[macro=info][title]:before { font-weight: bold; content: "\1F6C8" " " a
 </cnfl-note>
 <h2>{code}</h2>
 <blockquote>
-<p>Note the THREE backticks ``</p>
+<p>Note the THREE backticks ```</p>
 </blockquote>
 <pre><code class="language-js">// Write your code as usual...
 (function () {

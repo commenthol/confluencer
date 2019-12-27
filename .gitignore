@@ -2,3 +2,4 @@ node_modules
 plantuml.jar
 *.tgz
 *.log
+tmp

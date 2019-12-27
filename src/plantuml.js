@@ -1,5 +1,6 @@
 const { spawn } = require('child_process')
 const { resolve } = require('path')
+const { escapeHtmlLiteral } = require('./utils.js')
 
 async function exec (command, args, diagram) {
   let stdout = Buffer.from('')
@@ -24,6 +25,28 @@ async function exec (command, args, diagram) {
 
 const PLANTUML_JAR = process.env.PLANTUML_JAR || resolve(__dirname, '..', 'plantuml.jar')
 
+const validateOpts = {
+  format: (val) => ['PNG', 'SVG'].indexOf(val.toUpperCase()) !== -1 ? val.toUpperCase() : undefined,
+  align: (val) => ['left', 'center', 'right'].indexOf(val) !== -1 ? val : undefined,
+  border: (val) => typeof val === 'number' ? val : undefined
+}
+validateOpts.width = validateOpts.border
+
+function tmplPlantuml (text, opts = {}) {
+  opts['atlassian-macro-output-type'] = 'INLINE'
+  const params = ['atlassian-macro-output-type', 'format', 'title', 'align', 'border', 'width']
+    .map(key => {
+      const val = validateOpts[key] ? validateOpts[key](opts[key]) : opts[key]
+      return val !== undefined ? `${key}=${val}` : undefined
+    })
+    .filter(Boolean)
+    .join('|')
+
+  return escapeHtmlLiteral`<table class="wysiwyg-macro" data-macro-name="plantuml" data-macro-parameters="${params}" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>${text}</pre></td></tr></tbody></table>`
+    .replace(/&lt;([-.])/g, '<$1')
+    .replace(/([-.])&gt;/g, '$1>')
+}
+
 async function plantuml (diagram = '', { type = 'svg', jar = PLANTUML_JAR } = {}) {
   return exec('java', ['-jar', jar, '-p', `-t${type}`], diagram)
     .then(out => type === 'png'
@@ -35,4 +58,4 @@ async function plantuml (diagram = '', { type = 'svg', jar = PLANTUML_JAR } = {}
     })
 }
 
-module.exports = { plantuml }
+module.exports = { plantuml, tmplPlantuml }

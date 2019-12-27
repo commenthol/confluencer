@@ -12,14 +12,12 @@ const toColor = (color) => {
 }
 
 const cnfl = ({ title, color }) => {
-  let colorQuery = ''
   let colorParam = ''
   if (color) {
-    colorQuery = `colour=${color}&amp;`
     colorParam = `colour=${color}|`
   }
 
-  return escapeHtmlLiteral`<img class="editor-inline-macro" src="///plugins/servlet/status-macro/placeholder?=&amp;0=&amp;${colorQuery}title=${title}" data-macro-name="status" data-macro-parameters="${colorParam}title=${title}" data-macro-default-parameter="" data-macro-schema-version="1" height="18"></img>`
+  return escapeHtmlLiteral`<img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="status" data-macro-parameters="${colorParam}title=${title}" data-macro-default-parameter="" data-macro-schema-version="1" width="36" height="18"></img>`
 }
 
 const html = ({ title, color = '' }) => {

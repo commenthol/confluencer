@@ -1,12 +1,12 @@
 const cheerio = require('cheerio')
 const { escapeHtmlLiteral } = require('./utils.js')
-const { plantuml } = require('./plantuml.js')
+const { plantuml, tmplPlantuml } = require('./plantuml.js')
 
 const languageMap = {
   javascript: 'js'
 }
 
-function tmpl (text, opts) {
+function tmplCode (text, opts) {
   const params = ['collapse', 'firstline', 'linenumbers', 'title', 'language']
     .map(key => {
       let val = opts[key]
@@ -33,16 +33,20 @@ async function code (html = '', { collapse = false, firstline = 0, linenumbers =
     const language = re ? re[1] : undefined
     const isPlantuml = /^.*!plantuml(?:\(format=(svg|png)\)).*/.exec(lang)
 
-    if (isPlantuml && isHtml) {
+    if (isPlantuml) {
       const type = isPlantuml[1] || 'svg'
       const text = $(block).text()
-      const promise = plantuml(text, { type }).then(img => {
-        $(block.parentNode).replaceWith(img)
-      })
-      resolved.push(promise)
+      if (isHtml) {
+        const promise = plantuml(text, { type }).then(img => {
+          $(block.parentNode).replaceWith(img)
+        })
+        resolved.push(promise)
+      } else {
+        $(block.parentNode).replaceWith(tmplPlantuml(text, { format: type }))
+      }
     } else if (!isHtml) {
       const text = $(block).text()
-      $(block.parentNode).replaceWith(tmpl(text, { collapse, firstline, linenumbers, title, language }))
+      $(block.parentNode).replaceWith(tmplCode(text, { collapse, firstline, linenumbers, title, language }))
     }
   })
 

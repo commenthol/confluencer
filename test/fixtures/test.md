@@ -1,4 +1,3 @@
-<base href="https://my.confluence.com/path/to/page">
 
 ## footnotes
 

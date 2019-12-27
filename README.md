@@ -49,9 +49,9 @@ This shall render a `!status(STATUS)` macro with grey background with "STATUS" a
 
 Other colors
 
-    !status(color=Red RED) 
-    !status(color=Yellow YELLOW) 
-    !status(color=Blue Blue) 
+    !status(color=Red RED)
+    !status(color=Yellow YELLOW)
+    !status(color=Blue Blue)
     !status(color=Green GREEN)
 
 ### {note}, {warning}, {info}
@@ -81,7 +81,7 @@ Info boxes
 
 ### {code}
 
-Write your code as usually using three or more backticks 
+Write your code as usually using three or more backticks
 
     ```js
     // Write your code as usual...
@@ -119,3 +119,5 @@ MIT licensed
 
 [Macros]: https://confluence.atlassian.com/doc/macros-139387.html
 [PlantUML]: https://plantuml.com
+
+----

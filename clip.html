@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
 
-    <div id="target" contenteditable="true"></div>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
 
-    <script>
-        document.addEventListener('paste', function(e) {
-            e.preventDefault();
+<body>
+  <div id="target" contenteditable="true"></div>
 
-            var pastedText = ''
+  <div>
+<table class="wysiwyg-macro" style="background-image: url('http://confluence.f24.com/plugins/servlet/confluence/placeholder/macro-heading?definition=e3BsYW50dW1sOnRpdGxlPXRpdGxlfGFsaWduPWNlbnRlcnx3aWR0aD0xMDB8Ym9yZGVyPTJ8Zm9ybWF0PVNWR3xhdGxhc3NpYW4tbWFjcm8tb3V0cHV0LXR5cGU9SU5MSU5FfQ&amp;locale=de_DE&amp;version=2'); background-repeat: no-repeat;" data-macro-name="plantuml" data-macro-parameters="align=center|atlassian-macro-output-type=INLINE|border=2|format=SVG|title=title|width=100" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>Bob&lt;-Alice: Hello</pre></td></tr></tbody></table>
+  </div>
 
-            if (window.clipboardData && window.clipboardData.getData) { // IE
+  <script>
+    document.addEventListener('paste', function(e) {
+      e.preventDefault();
 
-                pastedText = window.clipboardData.getData('Text');
+      var pastedText = ''
 
-            } else if (e.clipboardData && e.clipboardData.getData) {
+      if (window.clipboardData && window.clipboardData.getData) { // IE
+        pastedText = window.clipboardData.getData('Text');
+      } else if (e.clipboardData && e.clipboardData.getData) {
+        pastedText = e.clipboardData.getData('text/html');
+      }
+      document.getElementById('target').innerHTML = pastedText
+    });
+  </script>
+</body>
 
-                pastedText = e.clipboardData.getData('text/html');
-
-            }
-
-            document.getElementById('target').innerHTML = pastedText
-        });
-    </script>
-  </body>
 </html>

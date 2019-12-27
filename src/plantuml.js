@@ -1,5 +1,4 @@
 const { spawn } = require('child_process')
-const { resolve } = require('path')
 const { escapeHtmlLiteral } = require('./utils.js')
 
 async function exec (command, args, diagram) {
@@ -23,8 +22,6 @@ async function exec (command, args, diagram) {
   })
 }
 
-const PLANTUML_JAR = process.env.PLANTUML_JAR || resolve(__dirname, '..', 'plantuml.jar')
-
 const validateOpts = {
   format: (val) => ['PNG', 'SVG'].indexOf(val.toUpperCase()) !== -1 ? val.toUpperCase() : undefined,
   align: (val) => ['left', 'center', 'right'].indexOf(val) !== -1 ? val : undefined,
@@ -45,8 +42,11 @@ function tmplPlantuml (text, opts = {}) {
   return escapeHtmlLiteral`<table class="wysiwyg-macro" data-macro-name="plantuml" data-macro-parameters="${params}" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>${text}</pre></td></tr></tbody></table>`
 }
 
-async function plantuml (diagram = '', { type = 'svg', jar = PLANTUML_JAR } = {}) {
-  return exec('java', ['-jar', jar, '-p', `-t${type}`], diagram)
+async function plantuml (diagram = '', { type = 'svg', jar = process.env.PLANTUML_JAR } = {}) {
+  const cmd = jar ? 'java' : 'plantuml'
+  const args = (jar ? ['-jar', jar] : []).concat(['-p', `-t${type}`])
+
+  return exec(cmd, args, diagram)
     .then(out => type === 'png'
       ? `<img src="data:image/png;base64,${out.toString('base64')}">`
       : out.toString()

@@ -14,6 +14,7 @@ This is a post-markdown, post-html processor to render macro definitions as conf
 * [{status}](#status)
   * [{note}, {warning}, {info}](#note-warning-info)
   * [{code}](#code)
+  * [{anchor}](#anchor)
   * [{plantuml}](#plantuml)
 * [license](#license)
 
@@ -29,7 +30,7 @@ This is a post-markdown, post-html processor to render macro definitions as conf
 
 1. Run from terminal
 
-        markdown-it test/fixtures/test.md | confluencer.js > out.html
+        markdown-it test/fixtures/test.md | confluencer > out.html
 
 2. Open file in browser and copy & paste content to Confluence Page
 
@@ -39,7 +40,7 @@ If you'd like to see a preview of the html page
 
 1. Run from terminal
 
-        markdown-it test/fixtures/test.md | confluencer.js --html > out.html
+        markdown-it test/fixtures/test.md | confluencer --html > out.html
 
 ## supported markdown extensions
 
@@ -90,14 +91,37 @@ Write your code as usually using three or more backticks
     })()
     ```
 
+### {anchor}
+
+Write your cross-references in markdown...
+
+```html
+[Goto anchor](#anchor)
+...
+<a name="anchor"></a>
+```
+
 ### {plantuml}
+
+If using together with plantuml make sure to install plantuml together with `graphviz` and `java`.
+
+On macos consider
+
+    brew install plantuml
+
+on linux you may use [plantuml-install](https://npmjs.com/package/plantuml-install).
+
+    npm i -g plantuml-install
+
+or use the `PLANTUML_JAR` environment variable to point to your `plantuml.jar` file.
+
 
 Write [PlantUML][] code within a code block.
 
     ```!plantuml()
     @startuml
 
-    Alice --> Bob : Hello Bob
+    Alice -> Bob : Hello Bob
     Alice <-- Bob : Hi Alice
 
     @enduml

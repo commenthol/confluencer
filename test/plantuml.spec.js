@@ -3,7 +3,7 @@ const assert = require('assert')
 const { plantuml, tmplPlantuml } = require('../src/plantuml.js')
 
 describe('plantuml', function () {
-  this.timeout(6000)
+  this.timeout(4000)
 
   it('shall convert to svg', function () {
     const diagram = fs.readFileSync(`${__dirname}/fixtures/alice.puml`, 'utf8')

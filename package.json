@@ -21,6 +21,7 @@
     "test": "test"
   },
   "scripts": {
+    "clean": "rm -rf node_modules plantuml.jar",
     "postinstall": "node scripts/plantuml.js",
     "lint": "eslint --fix \"**/*.js\"",
     "test": "mocha",

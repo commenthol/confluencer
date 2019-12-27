@@ -33,6 +33,8 @@ describe('parse', function () {
   })
 
   it('shall parse to html content', async function () {
+    this.timeout(10000)
+
     const filename = `${__dirname}/fixtures/test.html`
     const exp = fs.readFileSync(filename, 'utf8')
 

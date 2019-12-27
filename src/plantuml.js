@@ -30,6 +30,9 @@ async function plantuml (diagram = '', { type = 'svg', jar = PLANTUML_JAR } = {}
       ? `<img src="data:image/png;base64,${out.toString('base64')}">`
       : out.toString()
     )
+    .catch(err => {
+      return `<pre style="background: rgba(100%, 0%, 0%, 0.3); border: 1px solid red;">PlantUML Error - ${err.message}\n\n${diagram}</pre>`
+    })
 }
 
 module.exports = { plantuml }

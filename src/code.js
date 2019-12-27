@@ -36,18 +36,18 @@ async function code (html = '', { collapse = false, firstline = 0, linenumbers =
     if (isPlantuml && isHtml) {
       const type = isPlantuml[1] || 'svg'
       const text = $(block).text()
-      const p = plantuml(text, { type }).then(img => {
+      const promise = plantuml(text, { type }).then(img => {
         $(block.parentNode).replaceWith(img)
       })
-      resolved.push(p)
+      resolved.push(promise)
     } else if (!isHtml) {
       const text = $(block).text()
       $(block.parentNode).replaceWith(tmpl(text, { collapse, firstline, linenumbers, title, language }))
     }
   })
 
-  for (const p of resolved) {
-    await p
+  for (const promise of resolved) {
+    await promise
   }
 
   return $.html()

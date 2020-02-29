@@ -1,7 +1,7 @@
 {
   "name": "confluencer",
   "version": "1.2.0",
-  "description": "convert markdown to copy & paste ready confuence rich text",
+  "description": "convert markdown to copy & paste ready confluence rich text",
   "keywords": [],
   "homepage": "https://github.com/commenthol/confluencer#readme",
   "bugs": {
@@ -17,12 +17,14 @@
   "bin": {
     "confluencer": "./bin/confluencer.js"
   },
+  "man": "./man/confluencer.1",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "clean": "rm -rf node_modules",
     "lint": "eslint --fix \"**/*.js\"",
+    "man": "cd ./man && ronn -b -r confluencer.md && mv confluencer.roff confluencer.1 && man ./confluencer.1 > confluencer.txt",
     "test": "mocha",
     "posttest": "npm run lint"
   },
@@ -38,6 +40,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "markdown-it": "^10.0.0",
     "markdown-it-footnote": "^3.0.2",
-    "mocha": "^6.2.2"
+    "mocha": "^6.2.2",
+    "ronn": "^0.4.0-deprecation"
   }
 }

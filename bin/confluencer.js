@@ -17,7 +17,7 @@ const { render } = require('..')
  * Helpers
  */
 function readStdin (callback) {
-  const stdin = process.stdin
+  const { stdin } = process
   let buff = ''
 
   stdin.setEncoding('utf8')
@@ -25,11 +25,9 @@ function readStdin (callback) {
   stdin.on('data', function (data) {
     buff += data
   })
-
   stdin.on('error', function (err) {
     return callback(err)
   })
-
   stdin.on('end', function () {
     return callback(null, buff)
   })
@@ -132,10 +130,8 @@ function main (argv, callback) {
     return fs.readFile(input, 'utf8', callback)
   }
 
-  return readData(function (err, data) {
+  return readData((err, data) => {
     if (err) return callback(err)
-    // console.log('XXXXXX', data)
-    // console.log('XXXXXX', options)
     render(data, options)
       .then(data => {
         if (!output) {
@@ -155,7 +151,6 @@ function main (argv, callback) {
  * Expose / Entry Point
  */
 if (module === require.main) {
-  process.title = {}
   main(process.argv.slice(), function (err, code) {
     if (err) throw err
     return process.exit(code || 0)
@@ -172,6 +167,6 @@ function version () {
 function help () {
   // eslint-disable-next-line no-console
   console.log(
-    fs.readFileSync({}(__dirname, '..', 'man', 'confluencer.txt'), 'utf8')
+    fs.readFileSync(path.resolve(__dirname, '..', 'man', 'confluencer.txt'), 'utf8')
   )
 }

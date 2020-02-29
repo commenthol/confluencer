@@ -1,0 +1,62 @@
+.\" Generated with Ronnjs 0.4.0
+.\" http://github.com/kapouer/ronnjs
+.
+.TH "CONFLUENCER" "1" "February 2020" "" ""
+.
+.SH "NAME"
+\fBconfluencer\fR \-\- convert markdown to copy & paste ready confluence rich text
+.
+.SH "SYNOPSIS"
+.
+.nf
+confluencer [options] filename
+.
+.fi
+.
+.SH "OPTIONS"
+.
+.IP "\(bu" 4
+\fB\-h\fR, \fB\-\-help\fR:
+Display this help and exit\.
+.
+.IP "\(bu" 4
+\fB\-\-version\fR:
+Output version information and exit\.
+.
+.IP "\(bu" 4
+\fB\-i\fR, \fB\-\-input\fR \fB<filename>\fR:
+input from filename
+.
+.IP "\(bu" 4
+\fB\-o\fR, \fB\-\-output\fR \fBfilename\fR:
+output to filename
+.
+.IP "\(bu" 4
+\fB\-\-html\fR:
+output HTML for preview (not confluence HTML)
+.
+.IP "" 0
+.
+.SH "EXAMPLE"
+Run from terminal
+.
+.IP "" 4
+.
+.nf
+markdown\-it your\-markdown\-file\.md | confluencer > out\.html
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Getting a HTML preview
+.
+.IP "" 4
+.
+.nf
+markdown\-it your\-markdown\-file\.md | confluencer \-\-html > out\.html
+.
+.fi
+.
+.IP "" 0

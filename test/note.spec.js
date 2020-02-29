@@ -50,12 +50,12 @@ describe('note', function () {
   it('shall render info warning as html', function () {
     const exp = '<cnfl-note macro="warning" title="Warning">\n<ul>\n  <li>Info 1</li>\n  <li>And here is some text</li>\n</ul>\n</cnfl-note>'
     const text = [
-      '<p>``!warning(Warning)</p>',
+      '<p>\'\'\'!warning(Warning)</p>',
       '<ul>',
       '  <li>Info 1</li>',
       '  <li>And here is some text</li>',
       '</ul>',
-      '<p>``</p>'
+      '<p>\'\'\'</p>'
     ].join('\n')
     const result = note(text, { isHtml: true })
     // console.log(JSON.stringify(result))

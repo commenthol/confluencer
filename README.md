@@ -57,28 +57,28 @@ Other colors
 
 ### {note}, {warning}, {info}
 
-> Note the TWO backticks ``
+> Note the THREE ticks `'` (not backticks)
 
-    ``!note(This is the note title)
+    '''!note(This is the note title)
 
     - Note 1
     - And here is some text
 
-    ``
+    '''
 
 Warning boxes
 
-    ``!warning(This is the info title)
+    '''!warning(This is the info title)
 
-    ``
+    '''
 
 Info boxes
 
-    ``!info()
+    '''!info()
 
     info-box without title
 
-    ``
+    '''
 
 ### {code}
 

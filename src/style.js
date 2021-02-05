@@ -160,13 +160,13 @@ cnfl-note[macro=warning]:before { font-weight: bold; content: "\\26d4"; }
 cnfl-note[macro=warning][title]:before { font-weight: bold; content: "\\26d4" " " attr(title); }
 
 cnfl-note[macro=info] {}
-cnfl-note[macro=info]:before { font-weight: bold; content: "\\1F6C8"; }
-cnfl-note[macro=info][title]:before { font-weight: bold; content: "\\1F6C8" " " attr(title); }
+cnfl-note[macro=info]:before { font-weight: bold; content: "\\2139"; }
+cnfl-note[macro=info][title]:before { font-weight: bold; content: "\\2139" " " attr(title); }
 
 </style>
 `
 
-function style (isHtml) {
+function style ({ isHtml } = {}) {
   return isHtml
     ? htmlStyle
     : cnflStyle

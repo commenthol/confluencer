@@ -2,6 +2,36 @@ const assert = require('assert')
 const { note } = require('..')
 
 describe('note', function () {
+  it('shall render note with single-quotes', function () {
+    const text = [
+      "''''!note()",
+      'test',
+      "''''"
+    ].join('\n')
+    const result = note(text)
+    assert.ok(/<table class="wysiwyg-macro"/.test(result))
+  })
+
+  it('shall render note with single-quotes as html entities', function () {
+    const text = [
+      '&apos;&apos;&apos;!note()',
+      'test',
+      '&apos;&apos;&apos;'
+    ].join('\n')
+    const result = note(text)
+    assert.ok(/<table class="wysiwyg-macro"/.test(result))
+  })
+
+  it('shall render note with two backticks', function () {
+    const text = [
+      '``!note()',
+      'test',
+      '``'
+    ].join('\n')
+    const result = note(text)
+    assert.ok(/<table class="wysiwyg-macro"/.test(result))
+  })
+
   it('shall render note macro with title', function () {
     const exp = '<table class="wysiwyg-macro" data-macro-name="note" data-macro-parameters="title=This is the note title" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">\n<ul>\n  <li>Note 1</li>\n  <li>And here is some text</li>\n</ul>\n</td></tr></tbody></table>'
     const text = [

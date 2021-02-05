@@ -1,5 +1,16 @@
+const crypto = require('crypto')
 const { spawn } = require('child_process')
+const MapLRU = require('map-lru').default
 const { escapeHtmlLiteral } = require('./utils.js')
+const { debouncer } = require('./debouncer.js')
+
+const CACHE = new MapLRU(100)
+
+function md5 (str) {
+  const hash = crypto.createHash('md5')
+  hash.update(str)
+  return hash.digest('hex')
+}
 
 async function exec (command, args, diagram) {
   let stdout = Buffer.from('')
@@ -22,6 +33,8 @@ async function exec (command, args, diagram) {
   })
 }
 
+const debounce = debouncer(exec)
+
 const validateOpts = {
   format: (val) => ['PNG', 'SVG'].indexOf(val.toUpperCase()) !== -1 ? val.toUpperCase() : undefined,
   align: (val) => ['left', 'center', 'right'].indexOf(val) !== -1 ? val : undefined,
@@ -42,15 +55,33 @@ function tmplPlantuml (text, opts = {}) {
   return escapeHtmlLiteral`<table class="wysiwyg-macro" data-macro-name="plantuml" data-macro-parameters="${params}" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>${text}</pre></td></tr></tbody></table>`
 }
 
-async function plantuml (diagram = '', { type = 'svg', jar = process.env.PLANTUML_JAR } = {}) {
+async function plantuml (diagram = '', opts = {}) {
+  const {
+    type = 'svg',
+    jar = process.env.PLANTUML_JAR,
+    cache = CACHE
+  } = opts
+
+  const hashVal = md5(type + diagram)
+
+  if (cache && cache.has(hashVal)) {
+    return cache.get(hashVal)
+  }
+
   const cmd = jar ? 'java' : 'plantuml'
   const args = (jar ? ['-jar', jar] : []).concat(['-p', `-t${type}`])
 
-  return exec(cmd, args, diagram)
-    .then(out => type === 'png'
-      ? `<img src="data:image/png;base64,${out.toString('base64')}">`
-      : out.toString()
-    )
+  return debounce(hashVal, cmd, args, diagram)
+    .then(out => {
+      const img = type === 'png'
+        ? `<img src="data:image/png;base64,${out.toString('base64')}">`
+        : out.toString()
+
+      if (cache) {
+        cache.set(hashVal, img)
+      }
+      return img
+    })
     .catch(err => {
       return `<pre style="background: rgba(100%, 0%, 0%, 0.3); border: 1px solid red;">PlantUML Error - ${err.message}\n\n${diagram}</pre>`
     })

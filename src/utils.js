@@ -16,8 +16,11 @@ const escapeHtmlLiteral = (literals, ...vars) => literals
   .map((literal, i) => literal + escapeHtml(vars[i]))
   .join('')
 
+const replaceHtml = html => html.replace(/<html><head>|<\/head><body>|<\/body><\/html>/g, '')
+
 module.exports = {
   capitalize,
   escapeHtml,
-  escapeHtmlLiteral
+  escapeHtmlLiteral,
+  replaceHtml
 }

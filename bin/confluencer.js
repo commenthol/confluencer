@@ -50,7 +50,7 @@ function main (argv, callback) {
   let arg
 
   function getarg () {
-    var arg = argv.shift()
+    let arg = argv.shift()
 
     if (arg.indexOf('--') === 0) {
       // e.g. --opt

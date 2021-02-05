@@ -1,5 +1,5 @@
 const cheerio = require('cheerio')
-const { escapeHtmlLiteral } = require('./utils.js')
+const { escapeHtmlLiteral, replaceHtml } = require('./utils.js')
 
 const cnflAnchor = ({ anchor }) => {
   return escapeHtmlLiteral`<img class="editor-inline-macro" src="///plugins/servlet/confluence/placeholder/macro" data-macro-name="anchor" data-macro-default-parameter="${anchor}" data-macro-schema-version="1" width="9" height="18"></img>`
@@ -19,7 +19,7 @@ const cnflLink = ($elem) => {
 
 async function anchor (html = '', { isHtml = false } = {}) {
   if (isHtml) {
-    return Promise.resolve(html)
+    return html
   }
 
   const $ = cheerio.load(html)
@@ -43,7 +43,7 @@ async function anchor (html = '', { isHtml = false } = {}) {
     }
   })
 
-  return Promise.resolve($.html())
+  return replaceHtml($.html())
 }
 
 module.exports = { anchor }

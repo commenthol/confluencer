@@ -1,9 +1,38 @@
 const cheerio = require('cheerio')
-const { escapeHtmlLiteral } = require('./utils.js')
+const { escapeHtmlLiteral, replaceHtml } = require('./utils.js')
 const { plantuml, tmplPlantuml } = require('./plantuml.js')
 
+// supported highlighing by cnfl mapped from markdown using highlightjs
 const languageMap = {
-  javascript: 'js'
+  actionscript: 'actionscript3',
+  // applescript
+  // bash
+  csharp: 'c#',
+  // cpp
+  // css
+  // coldfusion (no support by highlightjs)
+  // delphi
+  // diff
+  erlang: 'erl',
+  // groovy
+  html: 'xml',
+  // java
+  javascript: 'js',
+  // jfx (Java Fx) (no support by highlightjs)
+  // php
+  'php-template': 'php',
+  // perl
+  txt: 'text',
+  // powershell
+  python: 'py',
+  // ruby
+  // sql
+  // sass (no support by highlightjs)
+  // scala
+  vbscript: 'vb', // vb (visual basic)
+  // xml
+  // yml (yaml)
+  yaml: 'yml'
 }
 
 function tmplCode (text, opts) {
@@ -21,7 +50,14 @@ function tmplCode (text, opts) {
   return escapeHtmlLiteral`<table class="wysiwyg-macro" data-macro-name="code" data-macro-parameters="${params}" data-macro-schema-version="1" data-macro-body-type="PLAIN_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><pre>${text}</pre></td></tr></tbody></table>`
 }
 
-async function code (html = '', { collapse = false, firstline = 0, linenumbers = false, title = '', isHtml = false } = {}) {
+async function code (html = '', {
+  plantuml: usePlantuml = true,
+  collapse = false,
+  firstline = 0,
+  linenumbers = false,
+  title = '',
+  isHtml = false
+} = {}) {
   const resolved = []
 
   const $ = cheerio.load(html)
@@ -33,7 +69,7 @@ async function code (html = '', { collapse = false, firstline = 0, linenumbers =
     const language = re ? re[1] : undefined
     const isPlantuml = /^.*!plantuml(?:\(format=(svg|png)\)).*/.exec(lang)
 
-    if (isPlantuml) {
+    if (usePlantuml && isPlantuml) {
       const type = isPlantuml[1] || 'svg'
       const text = $(block).text()
       if (isHtml) {
@@ -54,7 +90,7 @@ async function code (html = '', { collapse = false, firstline = 0, linenumbers =
     await promise
   }
 
-  return $.html()
+  return replaceHtml($.html())
 }
 
 module.exports = { code }

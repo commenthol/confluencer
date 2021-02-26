@@ -47,6 +47,24 @@ cnfl-note[macro=info][title]:before { font-weight: bold; content: "\2139" " " at
 </style>
 <h2>footnotes</h2>
 <p>This is a <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<h2>colored text</h2>
+<p><font color="red">text in red</font></p>
+<p><font color="#0000ff">text in blue</font></p>
+<h2>{toc}</h2>
+<p>!toc</p>
+<p><strong>pre-processed with markedpp</strong></p>
+<!-- !toc (minlevel=2) -->
+<ul>
+<li><a href="#footnotes">footnotes</a></li>
+<li><a href="#anchor">{anchor}</a></li>
+<li><a href="#cross-ref">{status}</a></li>
+<li><a href="#note">{note}</a></li>
+<li><a href="#info">{info}</a></li>
+<li><a href="#warning">{warning}</a></li>
+<li><a href="#code">{code}</a></li>
+<li><a href="#plantuml">{plantuml}</a></li>
+</ul>
+<!-- toc! -->
 <h2>{anchor}</h2>
 <p>Write your <a href="#cross-ref">cross-references</a> as with markdown…</p>
 <pre><code class="language-html">[Goto anchor](#anchor)

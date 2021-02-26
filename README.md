@@ -11,7 +11,10 @@ This is a post-markdown, post-html processor to render macro definitions as conf
 * [install](#install)
 * [usage](#usage)
 * [supported markdown extensions](#supported-markdown-extensions)
-* [{status}](#status)
+  * [footnotes](#footnotes)
+  * [colored text](#colored-text)
+  * [{toc}](#toc)
+  * [{status}](#status)
   * [{note}, {warning}, {info}](#note-warning-info)
   * [{code}](#code)
   * [{anchor}](#anchor)
@@ -44,7 +47,27 @@ If you'd like to see a preview of the html page
 
 ## supported markdown extensions
 
-## {status}
+### footnotes
+
+    This is a [^footnote].
+
+    [^footnote]: the footnote text    
+
+### colored text
+
+    <font color="red">text in red</font>
+
+### {toc}
+
+Write `!toc` in your markdown text.
+
+Options:
+
+    !toc
+    !toc(minlevel=2)
+    !toc(minlevel=2 maxlevel=5)
+
+### {status}
 
 This shall render a `!status(STATUS)` macro with grey background with "STATUS" as containing text.
 
@@ -57,28 +80,28 @@ Other colors
 
 ### {note}, {warning}, {info}
 
-> Note the THREE ticks `'` (not backticks)
+> Note the TWO backticks ``
 
-    '''!note(This is the note title)
+    ``!note(This is the note title)
 
     - Note 1
     - And here is some text
 
-    '''
+    ``
 
 Warning boxes
 
-    '''!warning(This is the info title)
+    ``!warning(This is the info title)
 
-    '''
+    ``
 
 Info boxes
 
-    '''!info()
+    ``!info()
 
     info-box without title
 
-    '''
+    ``
 
 ### {code}
 

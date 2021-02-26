@@ -7,7 +7,7 @@ const LODASH = '_'
 const QUOTES = [SINGLE, QUOTE]
 const KEYCHARS = /[a-z]/
 
-function params (str) {
+function params (str = '') {
   const params = {}
   let key = LODASH
   let cache = ''

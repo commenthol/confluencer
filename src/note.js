@@ -1,6 +1,6 @@
 const { escapeHtmlLiteral } = require('./utils.js')
 
-const RE_START = /^(?:<p>)?(``|(?:'|&apos;){3,6}|)!(note|info|warning)\(([^)]*)\)\s*(?:<\/p>)?\s*$/
+const RE_START = /^(?:<p>)?(``|(?:'|&apos;){3,6}|)!(note|info|warning)\s?\(([^)]*)\)\s*(?:<\/p>)?\s*$/
 const RE_END = (tag = '``') => new RegExp(`^(?:<p>)?${tag}\\s*(?:<\\/p>)\\s*$`)
 
 const cnflStart = (macro, title = '') => {

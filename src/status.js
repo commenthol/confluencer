@@ -1,7 +1,7 @@
 const { capitalize, escapeHtmlLiteral } = require('./utils.js')
 const params = require('./params.js')
 
-const RE = /!status\(([^)]+)\)/g
+const RE = /!status\s?\(([^)]+)\)/g
 const COLORS = /^(Red|Yellow|Green|Blue)$/i
 
 const toColor = (color) => {

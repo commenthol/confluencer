@@ -4,6 +4,8 @@ const { code } = require('./code.js')
 const { note } = require('./note.js')
 const { status } = require('./status.js')
 const { style } = require('./style.js')
+const { toc } = require('./toc.js')
+const { font } = require('./font.js')
 const { plantuml } = require('./plantuml.js')
 
 /**
@@ -21,6 +23,8 @@ async function render (text, opts = {}) {
   _text = await img(_text, opts)
   _text = status(_text, opts)
   _text = note(_text, opts)
+  _text = toc(_text, opts)
+  _text = font(_text, opts)
   _text = await anchor(_text, opts)
   _text = await code(_text, opts)
   return _text
@@ -34,5 +38,7 @@ module.exports = {
   note,
   status,
   style,
+  toc,
+  font,
   plantuml
 }

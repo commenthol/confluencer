@@ -1,7 +1,31 @@
-
 ## footnotes
 
 This is a [^footnote].
+
+## colored text
+
+<font color="red">text in red</font>
+
+<font color="#0000ff">text in blue</font>
+
+## {toc}
+
+!toc
+
+**pre-processed with markedpp**
+
+<!-- !toc (minlevel=2) -->
+
+* [footnotes](#footnotes)
+* [{anchor}](#anchor)
+* [{status}](#cross-ref)
+* [{note}](#note)
+* [{info}](#info)
+* [{warning}](#warning)
+* [{code}](#code)
+* [{plantuml}](#plantuml)
+
+<!-- toc! -->
 
 ## {anchor}
 

@@ -1,6 +1,6 @@
 {
   "name": "confluencer",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "convert markdown to copy & paste ready confluence rich text",
   "keywords": [],
   "homepage": "https://github.com/commenthol/confluencer#readme",

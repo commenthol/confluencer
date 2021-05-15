@@ -50,7 +50,7 @@ describe('note', function () {
   it('shall render info macro without title', function () {
     const exp = '<table class="wysiwyg-macro" data-macro-name="info" data-macro-parameters="title=" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">\n<ul>\n  <li>Info 1</li>\n  <li>And here is some text</li>\n</ul>\n</td></tr></tbody></table>'
     const text = [
-      '<p>``!info()</p>',
+      '<p>``!info</p>',
       '<ul>',
       '  <li>Info 1</li>',
       '  <li>And here is some text</li>',

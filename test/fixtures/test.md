@@ -49,6 +49,17 @@ In !status(color=Red RED) !status(color=Yellow YELLOW) !status(color=Blue Blue) 
 
 > Note the TWO backticks ``
 
+No title
+
+``!note
+
+- Note 1
+- And here is some text
+
+``
+
+With title
+
 ``!note(This is the note title)
 
 - Note 1
@@ -62,7 +73,7 @@ In !status(color=Red RED) !status(color=Yellow YELLOW) !status(color=Blue Blue) 
 
 No Title
 
-``!info()
+``!info
 
 - Info
 - And here is some text
@@ -84,7 +95,7 @@ With Title
 
 No title
 
-``!warning(This is the warning title)
+``!warning
 
 - Warning
 - And here is some text

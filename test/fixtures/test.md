@@ -123,7 +123,7 @@ This is just a text clock
 
 ## {plantuml}
 
-```!plantuml(format=svg)
+```!plantuml
 @startuml
 
 ' Write your plantuml code as usual...

@@ -5,6 +5,7 @@ const markdown = require('markdown-it')({
   linkify: true,
   typographer: true
 }).use(require('markdown-it-footnote'))
+
 const { render } = require('..')
 
 function writeFixture (filename, html, doWrite) {

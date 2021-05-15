@@ -67,7 +67,7 @@ async function code (html = '', {
     const lang = $(block).attr('class')
     const re = /^.*language-([A-Za-z0-9]+).*$/.exec(lang)
     const language = re ? re[1] : undefined
-    const isPlantuml = /^.*!plantuml(?:\(format=(svg|png)\)).*/.exec(lang)
+    const isPlantuml = /^.*!plantuml(?:\(format=(svg|png)\)|).*/.exec(lang)
 
     if (usePlantuml && isPlantuml) {
       const type = isPlantuml[1] || 'svg'

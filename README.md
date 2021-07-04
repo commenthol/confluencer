@@ -4,6 +4,9 @@
 
 This is a post-markdown, post-html processor to render macro definitions as confluence rich-text.
 
+This project is used in [md-fileserver](https://npmjs.org/package/md-fileserver), which is capable to render confluence html in the browser.<br> 
+**Hint:** Start the server with `mdstart -c <file.md>` 
+
 ## table of contents
 
 <!-- !toc (minlevel=2 omit="table of contents") -->
@@ -15,7 +18,7 @@ This is a post-markdown, post-html processor to render macro definitions as conf
   * [colored text](#colored-text)
   * [{toc}](#toc)
   * [{status}](#status)
-  * [{note}, {warning}, {info}](#note-warning-info)
+  * [{note}, {warning}, {info}, {tip}](#note-warning-info-tip)
   * [{code}](#code)
   * [{anchor}](#anchor)
   * [{plantuml}](#plantuml)
@@ -78,7 +81,7 @@ Other colors
     !status(color=Blue Blue)
     !status(color=Green GREEN)
 
-### {note}, {warning}, {info}
+### {note}, {warning}, {info}, {tip}
 
 > Note the TWO backticks ``
 
@@ -102,6 +105,20 @@ Info boxes
     info-box without title
 
     ``
+
+If admonitions are attributed with [markdown-it-admon](https://npmjs.org/package/markdown-it-admon) plugin they are transformed as well if matching the markdown or markup:
+
+```md
+!!! note
+    This is a note.
+```
+
+```html
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a note.</p>
+</div>
+```
 
 ### {code}
 
@@ -141,7 +158,7 @@ or use the `PLANTUML_JAR` environment variable to point to your `plantuml.jar` f
 
 Write [PlantUML][] code within a code block.
 
-    ```!plantuml()
+    ```!plantuml
     @startuml
 
     Alice -> Bob : Hello Bob

@@ -1,0 +1,29 @@
+:root {
+  --radius: 0.25em;
+}
+
+cnfl-status {
+  background: #999999;
+  color: white;
+  padding: var(--radius);
+  border-radius: var(--radius);
+  font-weight: bold;
+}
+
+cnfl-status[color=Red] {
+  background: #ff0000;
+}
+
+cnfl-status[color=Yellow] {
+  background: #ffcc00;
+  color: black;
+}
+
+cnfl-status[color=Green] {
+  background: #33ff33;
+  color: black;
+}
+
+cnfl-status[color=Blue] {
+  background: #00ccff
+}

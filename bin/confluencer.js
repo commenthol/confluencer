@@ -99,19 +99,7 @@ function main (argv, callback) {
       default:
         if (arg.indexOf('--') === 0) {
           const opt = arg.replace(/^--(no-)?/, '')
-          options[opt] = true
-          // if (!confluen{}.hasOwnProperty(opt)) {
-          //   continue
-          // }
-          // if (arg.indexOf('--no-') === 0) {
-          // options[opt{} (typeof confluencer.defaults[opt] !== 'boolean'
-          //     ? null
-          //     : false)
-          // } else {
-          //   options[opt{} (typeof confluencer.defaults[opt] !== 'boolean'
-          //     ? argv.shift()
-          //     : true)
-          // }
+          options[opt] = arg.indexOf('--no-') !== 0
         } else {
           files.push(arg)
         }

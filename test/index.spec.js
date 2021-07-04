@@ -5,6 +5,7 @@ const markdown = require('markdown-it')({
   linkify: true,
   typographer: true
 }).use(require('markdown-it-footnote'))
+  .use(require('markdown-it-admon'))
 
 const { render } = require('..')
 

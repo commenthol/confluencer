@@ -17,6 +17,7 @@ const languageMap = {
   // groovy
   html: 'xml',
   // java
+  json: 'js',
   javascript: 'js',
   // jfx (Java Fx) (no support by highlightjs)
   // php

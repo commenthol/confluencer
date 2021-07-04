@@ -21,6 +21,10 @@
 * `--html`:
   output HTML for preview (not confluence HTML)
 
+* `--no-style`:
+  do not add css styles for HTML preview (requires --html)
+
+
 ## EXAMPLE
 
 Run from terminal

@@ -89,6 +89,14 @@ With Title
 
 ``
 
+Using [markdown-it-admon](https://npmjs.org/package/markdown-it-admon)
+
+!!! info This is the info title
+
+    - Info
+    - And here is some text
+
+
 ## {warning}
 
 > Note the TWO backticks ``
@@ -107,6 +115,28 @@ With title
 ``!warning(This is the warning title)
 
 - Warning
+- And here is some text
+
+``
+
+## {tip}
+
+> Note the TWO backticks ``
+
+No title
+
+``!tip
+
+- Tip
+- And here is some text
+
+``
+
+With title
+
+``!tip(This is a tip)
+
+- Tip
 - And here is some text
 
 ``

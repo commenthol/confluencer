@@ -32,6 +32,27 @@ describe('note', function () {
     assert.ok(/<table class="wysiwyg-macro"/.test(result))
   })
 
+  it('shall render info from dev.admonition', function () {
+    const text = [
+      '<div class="admonition info">',
+      '<p class="admonition-title">This is the note title</p>',
+      '<p>this is some text</p>',
+      '</div>'
+    ].join('\n')
+    const result = note(text)
+    assert.strictEqual(result, '<table class="wysiwyg-macro" data-macro-name="info" data-macro-parameters="title=This is the note title" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><p>this is some text</p></td></tr></tbody></table>')
+  })
+
+  it('shall render note without title from dev.admonition', function () {
+    const text = [
+      '<div class="admonition">',
+      '<p>this is some text</p>',
+      '</div>'
+    ].join('\n')
+    const result = note(text)
+    assert.strictEqual(result, '<table class="wysiwyg-macro" data-macro-name="note" data-macro-parameters="title=" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body"><p>this is some text</p></td></tr></tbody></table>')
+  })
+
   it('shall render note macro with title', function () {
     const exp = '<table class="wysiwyg-macro" data-macro-name="note" data-macro-parameters="title=This is the note title" data-macro-schema-version="1" data-macro-body-type="RICH_TEXT"><tbody><tr><td class="wysiwyg-macro-body">\n<ul>\n  <li>Note 1</li>\n  <li>And here is some text</li>\n</ul>\n</td></tr></tbody></table>'
     const text = [
@@ -78,7 +99,8 @@ describe('note', function () {
   })
 
   it('shall render info warning as html', function () {
-    const exp = '<cnfl-note macro="warning" title="Warning">\n<ul>\n  <li>Info 1</li>\n  <li>And here is some text</li>\n</ul>\n</cnfl-note>'
+    const exp = '<div class="admonition warning">\n<p class="admonition-title">Warning</p>\n<ul>\n  <li>Info 1</li>\n  <li>And here is some text</li>\n</ul>\n</div>'
+
     const text = [
       '<p>\'\'\'!warning(Warning)</p>',
       '<ul>',

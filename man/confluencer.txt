@@ -1,4 +1,4 @@
-CONFLUENCER(1)                                                                                                            CONFLUENCER(1)
+CONFLUENCER(1)                                                          CONFLUENCER(1)
 
 NAME
        confluencer -- convert markdown to copy & paste ready confluence rich text
@@ -17,6 +17,8 @@ OPTIONS
 
        •   --html: output HTML for preview (not confluence HTML)
 
+       •   --no-style: do not add css styles for HTML preview (requires --html)
+
 EXAMPLE
        Run from terminal
 
@@ -26,4 +28,4 @@ EXAMPLE
 
            markdown-it your-markdown-file.md | confluencer --html > out.html
 
-                                                              February 2020                                               CONFLUENCER(1)
+                                       July 2021                        CONFLUENCER(1)

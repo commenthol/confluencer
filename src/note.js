@@ -1,6 +1,7 @@
-const { escapeHtmlLiteral } = require('./utils.js')
+const cheerio = require('cheerio')
+const { escapeHtmlLiteral, replaceHtml } = require('./utils.js')
 
-const RE_START = /^(?:<p>)?(``|(?:'|&apos;){3,6}|)!(note|info|warning)\s?(?:\(([^)]*)\)|)\s*(?:<\/p>)?\s*$/
+const RE_START = /^(?:<p>)?(``|(?:'|&apos;){3,6}|)!(note|info|warning|tip)\s?(?:\(([^)]*)\)|)\s*(?:<\/p>)?\s*$/
 const RE_END = (tag = '``') => new RegExp(`^(?:<p>)?${tag}\\s*(?:<\\/p>)\\s*$`)
 
 const cnflStart = (macro, title = '') => {
@@ -11,14 +12,35 @@ const cnflEnd = () => {
   return '</td></tr></tbody></table>'
 }
 
-const htmlStart = (macro, title = '') =>
-  escapeHtmlLiteral`<cnfl-note macro="${macro}" title="${title}">`
+const htmlStart = (macro, title = '') => {
+  let html = escapeHtmlLiteral`<div class="admonition ${macro}">`
+  if (title) html += escapeHtmlLiteral`\n<p class="admonition-title">${title}</p>`
+  return html
+}
 
-const htmlEnd = () => '</cnfl-note>'
+const htmlEnd = () => '</div>'
 
 function note (text = '', { isHtml = false } = {}) {
   let block
   let tag
+
+  if (!isHtml) {
+    const $ = cheerio.load(text)
+
+    $('div.admonition').each(function (i, elem) {
+      const $elem = $(elem)
+      const macro = $elem.attr('class').split(' ')[1] || 'note'
+      const $title = $elem.find('.admonition-title')
+      const title = $title.text()
+      if ($title) {
+        $title.remove()
+      }
+      $elem.replaceWith(cnflStart(macro, title) + $elem.children() + cnflEnd())
+    })
+
+    text = replaceHtml($.html())
+  }
+
   return text.split(/[\r\n]/).map(line => {
     const re = (!block ? RE_START : RE_END(tag)).exec(line)
     if (re) {

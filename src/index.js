@@ -13,6 +13,7 @@ const { plantuml } = require('./plantuml.js')
  * @param  {string} text - markdown text
  * @param  {Object} [opts={}]
  * @param  {boolean} [opts.isHtml] - render as html
+ * @param  {boolean} [opts.style=true] - add style in html mode
  * @param  {boolean} [opts.plantuml] - convert plantuml to svg
  * @param  {boolean} [opts.collapse] - make all code blocks collapsable (cnfl-html only)
  * @param  {boolean} [opts.linenumbers] - show linenumbers on all codeblocks (cnfl-html only)

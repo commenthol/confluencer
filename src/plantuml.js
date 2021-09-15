@@ -1,6 +1,6 @@
 const crypto = require('crypto')
 const { spawn } = require('child_process')
-const MapLRU = require('map-lru').default
+const MapLRU = require('map-lru')
 const { escapeHtmlLiteral } = require('./utils.js')
 const { debouncer } = require('./debouncer.js')
 

@@ -148,12 +148,12 @@ if (module === require.main) {
 }
 
 function version () {
-  // eslint-disable-next-line no-console
+   
   console.log('v' + require('../package.json').version)
 }
 
 function help () {
-  // eslint-disable-next-line no-console
+   
   console.log(
     fs.readFileSync(path.resolve(__dirname, '..', 'man', 'confluencer.txt'), 'utf8')
   )

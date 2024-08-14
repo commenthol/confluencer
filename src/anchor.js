@@ -7,6 +7,7 @@ const cnflAnchor = ({ anchor }) => {
 
 const cnflLink = ($elem) => {
   const href = $elem.attr('href')
+  // eslint-disable-next-line no-unused-vars
   const [_, anchor] = /^#(.*)$/.exec(href) || []
   if (anchor) {
     // $elem.removeAttr('href')

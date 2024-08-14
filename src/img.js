@@ -8,6 +8,7 @@ const { escapeHtmlLiteral, replaceHtml } = require('./utils.js')
 
 const buildImgTag = ({ src, ...attrs }) => {
   if (!/^https?:/.test(src)) { // attached image (needs manual upload)
+    // eslint-disable-next-line no-unused-vars
     const [_, filename] = /^.*?\/([^/]+)$/.exec(src) || ['', src]
     src = filename
   }
